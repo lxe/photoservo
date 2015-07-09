@@ -1,0 +1,67 @@
+<!doctype HTML>
+<head><title></title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+div {
+  /*float: left;*/
+  /*height: 100%*/
+}
+
+#d1 {
+  background: #cccccc;
+}
+
+#d2 {
+  background: #222222;
+}
+
+#sq {
+  position:  absolute;
+  width: 50px;
+  height: 50px;
+  background: #222;
+  left: 100px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- <div id="d1"></div>
+<div id="d2"></div> -->
+
+<div id="sq"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  var sq = document.getElementsByTagName('div')[0];
+  var oldValues = [];
+  socket.on('values', function (values) {
+
+    // console.log(values);
+
+    sq.style.top = (values[1] / 600 * 100) + '%';
+    sq.style.left = (values[0] / 600 * 100) + '%';
+
+    // var max = values[1] + values[0];
+    // var p1 = values[0] / max * 100;
+    // var p2 = values[1] / max * 100;
+
+    // divs[0].style.width = p1 + '%';
+    // // divs[0].style.height = p1 + '%';
+
+    // divs[1].style.width = p2 + '%';
+    // // divs[1].style.height = p2 + '%';
+  });
+</script>
+</body>
+</html>
